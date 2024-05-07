@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from .serializers import ItemSerializer
 from .models import Item
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 # Create your views here.
 
@@ -25,6 +26,7 @@ def item_list_serialized(request):
     serializer = ItemSerializer(items, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+@api_view(['GET'])
 def item_detail(request, pk):
     item = Item.objects.get(id=pk)
     serializer = ItemSerializer(item)
