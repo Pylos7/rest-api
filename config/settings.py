@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     'menu',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
