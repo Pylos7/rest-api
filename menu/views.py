@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from .serializers import ItemSerializer
 from .models import Item
-from rest_framework.respose import Response
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -25,7 +25,7 @@ def item_list_serialized(request):
     serializer = ItemSerializer(items, many=True)
     return JsonResponse(serializer.data, safe=False)
 
-def item_detail(request):
+def item_detail(request, pk):
     item = Item.objects.get(id=pk)
     serializer = ItemSerializer(item)
     return Response(serializer.data)
