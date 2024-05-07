@@ -5,6 +5,7 @@ from .models import Item
 # Create your views here.
 
 def item_list(request):
+    # QueryObj => Python list[dicts]
     items = Item.objects.all()
     item_list = []
     for item in items:
@@ -14,3 +15,5 @@ def item_list(request):
             "description": item.description,
         })
     return JsonResponse({"menu_items": item_list})
+
+# Serialization = changing data types into other datatypes
