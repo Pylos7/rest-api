@@ -7,17 +7,23 @@ from rest_framework.decorators import api_view
 
 # Create your views here.
 
+# def item_list(request):
+#     # QueryObj => Python list[dicts]
+#     items = Item.objects.all()
+#     item_list = []
+#     for item in items:
+#         item_list.append({
+#             "name": item.name,
+#             "price": item.price,
+#             "description": item.description,
+#         })
+#     return JsonResponse({"menu_items": item_list})
+
+@api_view(['GET'])
 def item_list(request):
-    # QueryObj => Python list[dicts]
     items = Item.objects.all()
-    item_list = []
-    for item in items:
-        item_list.append({
-            "name": item.name,
-            "price": item.price,
-            "description": item.description,
-        })
-    return JsonResponse({"menu_items": item_list})
+    serializer = ItemSerializer(items, many=True)
+    return Response(serializer.data)
 
 # Serialization = changing data types into other datatypes
 
